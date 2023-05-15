@@ -27,7 +27,7 @@ func main() {
 	}()
 
 	go func() {
-		viaCepChannel <- findCEP(cep, urlViaCep)
+		viaCepChannel <- findCEP(strings.ReplaceAll(cep, "-", ""), urlViaCep)
 	}()
 
 	select {
@@ -67,7 +67,7 @@ func getCepCommandLine() string {
 	for _, cep2 := range os.Args[1:] {
 		cep = fmt.Sprint(cep2)
 	}
-	return strings.ReplaceAll(cep, "-", "")
+	return cep
 }
 
 func printInConsole(cep *Cep) {

@@ -5,7 +5,6 @@ import (
 	"io/ioutil"
 	"net/http"
 	"os"
-	"strings"
 	"time"
 )
 
@@ -27,7 +26,7 @@ func main() {
 	}()
 
 	go func() {
-		viaCepChannel <- findCEP(strings.ReplaceAll(cep, "-", ""), urlViaCep)
+		viaCepChannel <- findCEP(cep, urlViaCep)
 	}()
 
 	select {
